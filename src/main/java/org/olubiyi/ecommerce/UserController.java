@@ -1,6 +1,8 @@
 package org.olubiyi.ecommerce;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,18 +15,26 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/Api/Users")
-    public List<User> getAllUsers(){
-        return userService.fetchAllUsers();
+    public ResponseEntity<List<User>> getAllUsers(){
+        return new ResponseEntity<>(userService.fetchAllUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/Api/Users/{id}")
-    public User getUsers(@PathVariable Long id){
-        return userService.fetchUserById(id);
+    public ResponseEntity<User> getUsers(@PathVariable Long id){
+//        User user = userService.fetchUserById(id);
+//        if(user == null){
+//            return ResponseEntity.notFound().build();
+//        }
+//        return new ResponseEntity<>(userService.fetchUserById(id),  HttpStatus.OK);
+
+        return userService.fetchUserById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(()->new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/Api/Users")
-    public String createUser(@RequestBody User user){
+    public ResponseEntity<String> createUser(@RequestBody User user){
         userService.addUser(user);
-        return "user added successfully";
+        return new ResponseEntity<>("user added successfully", HttpStatus.CREATED);
     }
 }

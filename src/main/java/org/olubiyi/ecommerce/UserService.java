@@ -1,5 +1,6 @@
 package org.olubiyi.ecommerce;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -25,5 +26,15 @@ public class UserService {
     public Optional<User> fetchUserById(Long id) {
         return userList.stream().filter(user -> user.getId().equals(id))
                 .findFirst();
+    }
+
+    public boolean updateUser(Long id, User update) {
+        return userList.stream().filter(user -> user.getId().equals(id))
+                .findFirst()
+                .map(existingUser -> {
+                    existingUser.setFirstName(update.getFirstName());
+                    existingUser.setLastName(update.getLastName());
+                    return true;
+                }).orElse(false);
     }
 }

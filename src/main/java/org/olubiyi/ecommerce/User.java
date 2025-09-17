@@ -11,9 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 //@AllArgsConstructor   Not really important for JPA
-//@Entity(name = "user_table")  How to Rename a table
-
-@Entity
+@Entity(name = "user_table")  //How to Rename a table
+//@Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

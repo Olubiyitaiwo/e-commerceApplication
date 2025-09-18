@@ -1,22 +1,22 @@
-package org.olubiyi.ecommerce;
+package org.olubiyi.ecommerce.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-//@AllArgsConstructor   Not really important for JPA
-@Entity(name = "user_table")  //How to Rename a table
-//@Entity
-public class User {
+@Entity(name = "Adresses")
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String firstName;
-    private String lastName;
+    Long id;
+    String street;
+    String city;
+    String state;
+    String country;
+    String zipcode;
 }

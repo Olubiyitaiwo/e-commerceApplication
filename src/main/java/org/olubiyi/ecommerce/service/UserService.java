@@ -1,6 +1,8 @@
-package org.olubiyi.ecommerce;
+package org.olubiyi.ecommerce.service;
 
 import lombok.RequiredArgsConstructor;
+import org.olubiyi.ecommerce.Repository.UserRepository;
+import org.olubiyi.ecommerce.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

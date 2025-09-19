@@ -1,6 +1,8 @@
 package org.olubiyi.ecommerce.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.olubiyi.ecommerce.dtos.UserRequest;
+import org.olubiyi.ecommerce.dtos.UserResponse;
 import org.olubiyi.ecommerce.model.User;
 import org.olubiyi.ecommerce.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -17,12 +19,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<UserResponse>> getAllUsers(){
         return new ResponseEntity<>(userService.fetchAllUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUsers(@PathVariable Long id){
+    public ResponseEntity<UserResponse> getUsers(@PathVariable Long id){
 //        User user = userService.fetchUserById(id);
 //        if(user == null){
 //            return ResponseEntity.notFound().build();
@@ -35,8 +37,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody User user){
-        userService.addUser(user);
+    public ResponseEntity<String> createUser(@RequestBody UserRequest userRequest){
+        userService.addUser(userRequest);
         return new ResponseEntity<>("user added successfully", HttpStatus.CREATED);
     }
 

@@ -2,7 +2,6 @@ package org.olubiyi.ecommerce.dtos;
 
 
 import lombok.Data;
-import org.olubiyi.ecommerce.model.Address;
 import org.olubiyi.ecommerce.model.UserRole;
 
 

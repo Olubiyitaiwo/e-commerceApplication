@@ -5,6 +5,7 @@ import org.olubiyi.ecommerce.Repository.UserRepository;
 import org.olubiyi.ecommerce.dtos.AddressDto;
 import org.olubiyi.ecommerce.dtos.UserRequest;
 import org.olubiyi.ecommerce.dtos.UserResponse;
+import org.olubiyi.ecommerce.model.Address;
 import org.olubiyi.ecommerce.model.User;
 import org.springframework.stereotype.Service;
 
@@ -32,10 +33,26 @@ public class UserService {
         //user.setId(nextId++);
 
         User user = new User();
-        user.setEmail(userRequest.getEmail());
+
+        updateUserFromRequest(user, userRequest);
+        userRepository.save(user);
+    }
+
+    private void updateUserFromRequest(User user, UserRequest userRequest) {
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
-        userRepository.save(user);
+        user.setEmail(userRequest.getEmail());
+        user.setPhone(userRequest.getPhone());
+
+        if(userRequest.getAddress() != null) {
+            Address address = new Address();
+            address.setStreet(userRequest.getAddress().getStreet());
+            address.setCity(userRequest.getAddress().getCity());
+            address.setState(userRequest.getAddress().getState());
+            address.setCountry(userRequest.getAddress().getCountry());
+            address.setZipcode(userRequest.getAddress().getZipcode());
+            user.setAddress(address);
+        }
     }
 
     public Optional<UserResponse> fetchUserById(Long id) {
@@ -43,21 +60,19 @@ public class UserService {
                 .map(this::mapToUserResponse);
     }
 
-    public boolean updateUser(Long id, User update) {
+    public boolean updateUser(Long id, UserRequest updateUserRequest) {
         return userRepository.findById(id)
                 .map(existingUser -> {
-                    existingUser.setFirstName(update.getFirstName());
-                    existingUser.setLastName(update.getLastName());
+                  updateUserFromRequest(existingUser, updateUserRequest);
                     userRepository.save(existingUser);
                     return true;
                 }).orElse(false);
-
     }
 
     private UserResponse mapToUserResponse(User user) {
         UserResponse userResponse = new UserResponse();
 
-        userResponse.setId(user.getId());
+        userResponse.setId(user.getId().toString());
         userResponse.setFirstName(user.getFirstName());
         userResponse.setLastName(user.getLastName());
         userResponse.setEmail(user.getEmail());

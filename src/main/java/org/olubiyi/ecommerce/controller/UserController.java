@@ -3,7 +3,6 @@ package org.olubiyi.ecommerce.controller;
 import lombok.RequiredArgsConstructor;
 import org.olubiyi.ecommerce.dtos.UserRequest;
 import org.olubiyi.ecommerce.dtos.UserResponse;
-import org.olubiyi.ecommerce.model.User;
 import org.olubiyi.ecommerce.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +42,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User updatedUser){
+    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody UserRequest updatedUser){
        boolean updated = userService.updateUser(id, updatedUser);
        //if(updated)
             //return ResponseEntity.ok( "user updated successfully");

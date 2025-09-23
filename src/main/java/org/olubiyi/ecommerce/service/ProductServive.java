@@ -22,6 +22,11 @@ public class ProductServive {
         return mapToProductResponse(savedProduct);
     }
 
+    private ProductResponse mapToProductResponse(Product savedProduct) {
+
+        return null;
+    }
+
     private void updateProductFromRequest(Product product, ProductRequest productRequest) {
         product.setName(productRequest.getName());
         product.setDescription(productRequest.getDescription());

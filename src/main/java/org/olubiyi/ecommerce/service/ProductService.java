@@ -7,7 +7,9 @@ import org.olubiyi.ecommerce.dtos.ProductResponse;
 import org.olubiyi.ecommerce.model.Product;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @AllArgsConstructor
@@ -15,6 +17,7 @@ import java.util.Optional;
 public class ProductService {
 
     private final ProductRepository productRepository;
+
 
     public ProductResponse createProduct(ProductRequest productRequest) {
         Product product = new Product();
@@ -51,5 +54,18 @@ public class ProductService {
                   Product saveProduct =  productRepository.save(existingProduct);
                     return mapToProductResponse(saveProduct);
                 });
+    }
+
+    public List<ProductResponse> getAllProducts() {
+        return productRepository.findByActiveTrue().stream()
+                .map(this::mapToProductResponse)
+                .collect(Collectors.toList());
+    }
+
+    public void deleteProduct(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+        product.setActive(false);
+        productRepository.save(product);
     }
 }

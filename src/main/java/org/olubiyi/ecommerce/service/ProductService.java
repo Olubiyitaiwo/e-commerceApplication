@@ -7,6 +7,8 @@ import org.olubiyi.ecommerce.dtos.ProductResponse;
 import org.olubiyi.ecommerce.model.Product;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @AllArgsConstructor
 @Service
@@ -40,5 +42,14 @@ public class ProductService {
         product.setPrice(productRequest.getPrice());
         product.setImageUrl(productRequest.getImageUrl());
         product.setStockQuantity(productRequest.getStockQuantity());
+    }
+
+    public Optional<ProductResponse> updateProduct(Long id, ProductRequest productRequest) {
+       return productRepository.findById(id)
+                .map(existingProduct -> {
+                    updateProductFromRequest(existingProduct, productRequest);
+                  Product saveProduct =  productRepository.save(existingProduct);
+                    return mapToProductResponse(saveProduct);
+                });
     }
 }

@@ -3,6 +3,7 @@ package org.olubiyi.ecommerce.controller;
 import lombok.RequiredArgsConstructor;
 import org.olubiyi.ecommerce.dtos.ProductRequest;
 import org.olubiyi.ecommerce.dtos.ProductResponse;
+import org.olubiyi.ecommerce.model.Product;
 import org.olubiyi.ecommerce.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,5 +43,10 @@ public class ProductController {
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
        boolean deleted = productService.deleteProduct(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductResponse>> searchProducts(@RequestParam String keyword){
+        return ResponseEntity.ok(productService.searchProducts(keyword));
     }
 }

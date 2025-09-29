@@ -75,6 +75,5 @@ public class ProductService {
         return productRepository.searchProducts(keyword).stream()
                 .map(this::mapToProductResponse)
                 .collect(Collectors.toList());
-
     }
 }

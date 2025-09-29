@@ -3,7 +3,6 @@ package org.olubiyi.ecommerce.controller;
 import lombok.RequiredArgsConstructor;
 import org.olubiyi.ecommerce.dtos.ProductRequest;
 import org.olubiyi.ecommerce.dtos.ProductResponse;
-import org.olubiyi.ecommerce.model.Product;
 import org.olubiyi.ecommerce.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

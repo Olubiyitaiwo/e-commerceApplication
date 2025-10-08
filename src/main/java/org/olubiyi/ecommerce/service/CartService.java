@@ -9,12 +9,14 @@ import org.olubiyi.ecommerce.model.CartItem;
 import org.olubiyi.ecommerce.model.Product;
 import org.olubiyi.ecommerce.model.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CartService {
     private final ProductRepository productRepository;
     private final CartItemRepository cartItemRepository;
@@ -59,19 +61,13 @@ public class CartService {
 
     public boolean deleteItemFromCart(String userId, Long productId) {
         Optional<Product> productOpt = productRepository.findById(productId);
-        if (productOpt.isEmpty())
-            return false;
 
         Optional<User> userOPt = userRepository.findById(Long.valueOf(userId));
-        if (userOPt.isEmpty())
-            return false;
 
-        userOPt.flatMap(user ->
-                productOpt.map(product -> {
-                    cartItemRepository.deleteByUserAndProduct(user, product);
-                    return true;
-                })
-        );
+        if (productOpt.isPresent() && userOPt.isPresent()) {
+            cartItemRepository.deleteByUserAndProduct(userOPt.get(), productOpt.get());
+            return true;
+        }
         return false;
     }
 }

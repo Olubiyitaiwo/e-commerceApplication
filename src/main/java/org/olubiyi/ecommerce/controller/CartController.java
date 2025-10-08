@@ -25,7 +25,7 @@ public class CartController {
         }
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    @DeleteMapping("/items/{product}")
+    @DeleteMapping("/items/{productId}")
     public ResponseEntity<Void> removeFromCart(
             @RequestHeader("X-User-ID") String userId,
             @PathVariable Long productId)

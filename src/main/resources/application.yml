@@ -2,6 +2,9 @@
 #spring.h2.console.enabled=true
 #spring.datasource.url=jdbc:h2:mem:test
 
+#actuator
+# management.endpoints.web.exposure.include=*
+# endpoint.health.show-details: always
 spring:
   application:
     name: ecommerce
@@ -14,3 +17,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

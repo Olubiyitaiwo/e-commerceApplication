@@ -5,18 +5,35 @@
 #actuator
 # management.endpoints.web.exposure.include=*
 # endpoint.health.show-details: always
+
+# Postgres configuration
+#spring.datasource=url:
+#spring.datasource=username:
+#spring.datasource=password:
+#e.t.c
+
 spring:
   application:
     name: ecommerce
-  h2:
-    console:
-      enabled: true
   datasource:
-    url: jdbc:h2:mem:test
+    url: jdbc:postgresql://localhost:5452/ecomdb
+    username: twinners
+    password: Danlard8576
   jpa:
+    database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgresSQLDialect
+#  h2:
+#    console:
+#      enabled: true
+#  datasource:
+#    url: jdbc:h2:mem:test
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
 
 management:
   endpoints:

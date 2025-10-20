@@ -16,7 +16,7 @@ spring:
   application:
     name: ecommerce
   datasource:
-    url: jdbc:postgresql://localhost:5452/ecomdb
+    url: jdbc:postgresql://localhost:5433/ecomdb
     username: twinners
     password: Danlard8576
   jpa:
@@ -24,7 +24,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.PostgresSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 #  h2:
 #    console:
 #      enabled: true

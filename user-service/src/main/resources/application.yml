@@ -4,31 +4,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://localhost/:27017/userdb
-      database: userdb
-
-#  datasource:
-#    url: jdbc:postgresql://localhost:5433/userdb
-#    username: twinners
-#    password: Danlard8576
-#    database-platform: org.hibernate.dialect.PostgreSQLDialect
-#
-#  jpa:
-#    database: postgresql
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: create
-#    database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-#  h2:
-#    console:
-#      enabled: true
-#  datasource:
-#    url: jdbc:h2:mem:test
-#  jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: create
+      uri: mongodb+srv://twinners:XGfrhAMeUlMQQnY2@user-data.dyqbypi.mongodb.net/userdb?retryWrites=true&w=majority&tls=true&tlsProtocol=TLSv1.2
 
 server:
   port: 8082

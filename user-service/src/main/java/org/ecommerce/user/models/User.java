@@ -12,7 +12,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
 @Document(collection = "users")
 public class User {
     @Id

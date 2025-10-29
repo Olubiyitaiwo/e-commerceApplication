@@ -56,12 +56,12 @@ public class UserService {
         }
     }
 
-    public Optional<UserResponse> fetchUserById(Long id) {
+    public Optional<UserResponse> fetchUserById(String id) {
         return userRepository.findById(id)
                 .map(this::mapToUserResponse);
     }
 
-    public boolean updateUser(Long id, UserRequest updateUserRequest) {
+    public boolean updateUser(String id, UserRequest updateUserRequest) {
         return userRepository.findById(id)
                 .map(existingUser -> {
                   updateUserFromRequest(existingUser, updateUserRequest);

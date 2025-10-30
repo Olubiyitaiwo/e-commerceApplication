@@ -4,7 +4,8 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb+srv://twinners:XGfrhAMeUlMQQnY2@user-data.dyqbypi.mongodb.net/userdb?retryWrites=true&w=majority&tls=true&tlsProtocol=TLSv1.2
+      uri: mongodb+srv://twinners:XGfrhAMeUlMQQnY2@user-data.dyqbypi.mongodb.net/userdb?retryWrites=true&w=majority
+      database: userdb
 
 server:
   port: 8082

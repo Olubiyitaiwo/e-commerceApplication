@@ -4,19 +4,20 @@ spring:
 
   datasource:
     # url: jdbc:postgresql://localhost:5433/productdb
-    url: jdbc:postgresql://ep-polished-scene-abrd6w19-pooler.eu-west-2.aws.neon.tech/productdb?sslmode=require
+    url: jdbc:mysql://localhost:3306/productservice
     username: product_user
-    password: StrongPass123!
-    driver-class-name: org.postgresql.Driver
+    password: Danlard8576
 
   jpa:
-    database: postgresql
     show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.MySQLDialect
+        properties:
+          hibernate:
+            format_sql: true
 
 server:
   port: 8081

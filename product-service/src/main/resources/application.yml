@@ -4,8 +4,8 @@ spring:
 
   datasource:
     # url: jdbc:postgresql://localhost:5433/productdb
-    url: jdbc:mysql://localhost:3306/productservice
-    username: product_user
+    url: jdbc:mysql://localhost:3307/Twinners
+    username: Twinners
     password: Danlard8576
 
   jpa:
